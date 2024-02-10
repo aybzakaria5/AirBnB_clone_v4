@@ -22,13 +22,13 @@ def close_db(error):
 @app.route('/1-hbnb', strict_slashes=False)
 def hbnb():
     """ HBNB is alive! """
-    state_obj = storage.all('State').values()
-    states = dict([state.name, state] for state in state_obj)
+    states = storage.all('State').values()
+    states = dict([state.name, state] for state in states)
     amenities = storage.all('Amenity').values()
     places = storage.all('Place').values()
-    user_obj = storage.all('User').values()
+    users = storage.all('User').values()
     users = dict([user.id, "{} {}".format(user.first_name, user.last_name)]
-                 for user in user_obj)
+                 for user in users)
     cache_id = uuid.uuid4()            
     return render_template('1-hbnb.html',
                            states=states,
