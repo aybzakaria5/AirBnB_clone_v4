@@ -118,8 +118,10 @@ class HBNBCommand(cmd.Cmd):
             return False
         for key in obj_dict:
             obj_list.append(str(obj_dict[key]))
-        print("[", end="")
-        print(", ".join(obj_list), end="")
+        print("[")
+        for obj_str in obj_list:
+            print(obj_str)
+            print()
         print("]")
 
     def do_update(self, arg):
