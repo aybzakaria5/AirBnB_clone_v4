@@ -1,13 +1,14 @@
 $(document).ready(function () {
   const amenityId = {};
-  $('.amenities .popever li input').change(function (event) {
+  $('li input[type=checkbox]').change(function (event) {
     if (this.checked) {
-      amenityId[this.dataset.id] = this.dataset.name;
+      amenityId[this.dataset.name] = this.dataset.id;
     } else {
-      delete amenityId[this.dataset.id];
+      delete amenityId[this.dataset.name];
     }
-    const names = Object.values(amenityId);
-    $('.amenities h4').text(names.join(', '));
+    const names = Object.keys(amenityId);
+    $('.amenities h4').text(names.sort().join(', '));
+
   });
 
   $.get('http://0.0.0.0:5001/api/v1/status/', function (data) {
